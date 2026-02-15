@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komitmen Tidur 22.00 💖</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinksoft: '#ff4da6',
+                        pinkdark: '#ff1a8c',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-black text-white min-h-screen flex flex-col items-center justify-center px-4">
+
+    <!-- Card Container -->
+    <div
+        class="w-full max-w-md bg-gradient-to-b from-pink-900 to-black rounded-3xl shadow-2xl p-6 text-center border border-pink-500">
+
+        <h1 class="text-2xl font-bold text-pink-400 mb-2 animate-pulse">
+            Komitmen Tidur 22.00
+        </h1>
+
+        <p class="text-sm text-gray-300 mb-4">
+            Bersama <span class="text-pink-400 font-semibold">Kiki</span> dan
+            <span class="text-pink-400 font-semibold">Jia</span>
+        </p>
+
+        <!-- Countdown -->
+        <div class="bg-black/60 rounded-xl p-4 mb-4">
+            <p class="text-xs text-gray-400">Countdown menuju jam 22:00</p>
+            <div id="countdown" class="text-2xl font-bold text-pink-400 mt-2">
+                00:00:00
+            </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="text-left mb-4">
+            <p class="text-sm text-pink-400 mb-2">Checklist sebelum tidur:</p>
+            <div class="space-y-2">
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" class="accent-pink-500">
+                    <span>Sikat gigi 🪥</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" class="accent-pink-500">
+                    <span>Minum air 💧</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" class="accent-pink-500">
+                    <span>Matikan HP 📵</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Commitment Button -->
+        <button onclick="commitSleep()"
+            class="w-full bg-pink-500 hover:bg-pink-600 active:scale-95 transition-all duration-200 py-3 rounded-xl font-bold shadow-lg">
+            🌙 Saya Siap Tidur Jam 22.00!
+        </button>
+
+        <!-- Result Message -->
+        <div id="message" class="mt-4 text-sm text-pink-300 hidden">
+            Yeayyy 💖 aku bangga sama kamu! Jangan begadang yaaa cinta 🌙✨
+        </div>
+
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const target = new Date();
+            target.setHours(22, 0, 0, 0);
+
+            if (now > target) {
+                target.setDate(target.getDate() + 1);
+            }
+
+            const diff = target - now;
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerText =
+                `${String(hours).padStart(2, '0')}:` +
+                `${String(minutes).padStart(2, '0')}:` +
+                `${String(seconds).padStart(2, '0')}`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        function commitSleep() {
+            const message = document.getElementById("message");
+            message.classList.remove("hidden");
+            message.classList.add("animate-bounce");
+        }
+    </script>
+
+</body>
+
+</html>
